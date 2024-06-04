@@ -1,0 +1,11 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 12-05-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component>
+    <aura:attribute name="message" type="String"/>
+    <p>{!'Hello! ' + v.message}</p>
+</aura:component>

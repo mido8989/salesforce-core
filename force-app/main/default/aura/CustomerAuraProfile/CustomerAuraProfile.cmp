@@ -1,0 +1,36 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 10-18-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component controller="CustomerProfileController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+
+    <aura:attribute name="accountInfo" type="Object" />
+
+    <aura:attribute name="recordId" type="Id" />
+
+    <aura:attribute name="AccountDetail" type="AccountDetail__c" />
+
+
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+
+
+    <lightning:card iconName="action:preview" title="{! 'Customer Profile'}">
+
+        <p class="slds-p-horizontal_small">
+
+            AccountName : {!v.accountInfo.Account__r.Name} <br/>
+
+            AccountPhone : {!v.accountInfo.Account__r.Phone} <br/>
+
+            AccountCEO : {!v.accountInfo.Account__r.ceoName__c}
+
+        </p>
+
+    </lightning:card>
+
+</aura:component>
