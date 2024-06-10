@@ -1,3 +1,60 @@
-<aura:component>
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-04-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<!-- <aura:component implements="force:lightningQuickActionWithoutHeader,force:hasRecordId"> -->
+    <!-- <aura:component controller="CustomerProfileController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" > -->
 
-</aura:component>	
+<aura:component  implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+
+    
+   <div class="slds-page-header" role="banner">
+       <lightning:recordViewForm recordId="{!v.recordId}" 
+                                 objectApiName="Account">
+           
+           <div class="slds-text-heading_label">
+               <lightning:outputField fieldName="Name" variant="label-hidden"/>
+           </div>
+           <lightning:messages/>
+       </lightning:recordViewForm>
+       <h1 class="slds-page-header__title slds-m-right_small
+                      slds-truncate slds-align-left">Create New Contact</h1>
+    </div>
+    <lightning:recordEditForm aura:id="myform"
+                              objectApiName="Contact"
+                              onsubmit="{!c.handleSubmit}"
+                              onsuccess="{!c.handleSuccess}">
+        <lightning:messages/>
+        <lightning:inputField fieldName="FirstName"/>
+        <lightning:inputField fieldName="LastName"/>
+        <lightning:inputField fieldName="Title"/>
+        <lightning:inputField fieldName="Phone"/>
+        <lightning:inputField fieldName="Email"/>
+        <lightning:inputField fieldName="Languages__c"/>
+        <div class="slds-m-top_medium">
+            <lightning:button label="Cancel" onclick="{!c.handleCancel}" />
+            <lightning:button type="submit" label="Save Contact" variant="brand"/>
+        </div>
+    </lightning:recordEditForm>
+
+    <lightning:recordEditForm aura:id="newform"
+                              objectApiName="Lead"
+                              onsubmit="{!c.handleLeadSubmit}"
+                              onsuccess="{!c.handleSuccess}">
+    <lightning:messages/>
+    <lightning:inputField fieldName="LeadSource"/>
+    <lightning:inputField fieldName="Title"/>
+    <lightning:inputField fieldName="Phone"/>
+    <lightning:inputField fieldName="Rating"/>
+    <lightning:inputField fieldName="LastName"/>
+    <lightning:inputField fieldName="Company"/>
+    
+    <div class="slds-m-top_medium">
+        <lightning:button label="Lead Cancel" onclick="{!c.handleCancel}" />
+        <lightning:button type="submit" label="Save Lead" variant="brand"/>
+    </div>
+    </lightning:recordEditForm>
+</aura:component>

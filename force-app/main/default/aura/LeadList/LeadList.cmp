@@ -1,0 +1,29 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-05-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<aura:component controller="LeadController" implements="flexipage:availableForRecordHome,force:hasRecordId,force:appHostable" access="global" >
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <aura:attribute name="leads" type="Lead[]" />
+    <aura:attribute name="selectedLeadIds" type="List" default="[]" />
+    <aura:attribute name="numLeads" type="Integer" default="1"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <lightning:navigation aura:id="navService"/>
+    <aura:iteration items="{!v.leads}" var="lead" indexVar="index">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-12">
+                <lightning:input type="checkbox" label="{!index + 1}" value="{!lead.Id}" onchange="{!c.selectLead}" />
+            </div>
+            <div class="slds-col slds-size_11-of-12">
+                <a onclick="{!c.navigateToRecord}" data-recordId="{!lead.Id}">{!lead.Name}</a> - {!lead.Company} - {!lead.Status}
+            </div>
+        </div>
+    </aura:iteration>
+    <lightning:button label="Delete" onclick="{!c.deleteLeads}" />
+    <lightning:button label="Create Lead" onclick="{!c.createLead}" />
+    <lightning:input type="number" label="Number of Leads to Create" value="{!v.numLeads}" />
+    <lightning:button label="Create multiple Leads" onclick="{!c.createLeads}" />
+</aura:component>
